@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum and Trigonometric Values</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sum and Trigonometric Values</h1>
+    
+    <!-- Input fields and button -->
+    <div>
+        <h2>Sum of Arguments</h2>
+        <input type="number" id="arg1" placeholder="Enter first number">
+        <input type="number" id="arg2" placeholder="Enter second number">
+        <input type="number" id="arg3" placeholder="Enter third number">
+        <button onclick="displaySum()">Calculate Sum</button>
+        <p id="sumResult"></p>
+    </div>
+
+    <div>
+        <h2>Trigonometric Values</h2>
+        <input type="number" id="angle" placeholder="Enter angle in degrees">
+        <button onclick="displayTrigValues()">Calculate Trigonometric Values</button>
+        <p id="trigValues"></p>
+    </div>
+
+    <script>
+        // Function to sum arguments
+        function sumOfArgs(...args) {
+            return args.reduce((acc, val) => acc + val, 0);
+        }
+
+        // Function to print trigonometric values for a given angle in degrees
+        function printTrigonometricValues(angle) {
+            let radians = angle * (Math.PI / 180);  // Convert degrees to radians
+            let sineValue = Math.sin(radians);
+            let cosineValue = Math.cos(radians);
+            let tangentValue = Math.tan(radians);
+
+            return `Sine(${angle}°) = ${sineValue.toFixed(4)}<br>
+                    Cosine(${angle}°) = ${cosineValue.toFixed(4)}<br>
+                    Tangent(${angle}°) = ${tangentValue.toFixed(4)}`;
+        }
+
+        // Function to display the sum of input values
+        function displaySum() {
+            let arg1 = parseFloat(document.getElementById('arg1').value);
+            let arg2 = parseFloat(document.getElementById('arg2').value);
+            let arg3 = parseFloat(document.getElementById('arg3').value);
+
+            let sum = sumOfArgs(arg1, arg2, arg3);
+            document.getElementById('sumResult').innerHTML = `Sum of arguments: ${sum}`;
+        }
+
+        // Function to display the trigonometric values for a given angle
+        function displayTrigValues() {
+            let angle = parseFloat(document.getElementById('angle').value);
+            let trigValues = printTrigonometricValues(angle);
+            document.getElementById('trigValues').innerHTML = trigValues;
+        }
+    </script>
+</body>
+</html>
